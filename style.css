@@ -12,3 +12,26 @@
     align-items: center;
     justify-content: space-between;
 }
+
+button{
+    padding:8px 16px;        /* smaller than before */
+    font-size:14px;          /* closer to default */
+    border:1px solid #888;
+    background:#f7f7f7;
+    border-radius:0;         /* square */
+    cursor:pointer;
+}
+
+/* very subtle feedback */
+button:hover{
+    background:#efefef;
+}
+
+button:active{
+    background:#e5e5e5;
+}
+.row-buttons{
+    margin-top:8px;
+    display:flex;
+    gap:8px;
+}

@@ -130,7 +130,7 @@
 
 <body>
     <div class="sheet">
-        <h2>Brush Manufacturing Order</h2>
+        <h2>Manufacturing Order</h2>
 
         <!-- CUSTOMER INFO -->
         <div class="section">
@@ -233,8 +233,8 @@
                         <th># pcs</th>
                         <th>Height</th>
                         <th>Length</th>
-                        <th>2-Ply</th>
-                        <th>1/4"</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -243,10 +243,10 @@
             </table>
 
             <br>
-
-            <button type="button" id="add_row">Add Next Row</button>
-            <button type="button" id="remove_row">Remove Last Row</button>
-
+            <div class="row-buttons">
+                <button type="button" id="add_row" class="">+ Add Next Row</button>
+                <button type="button" id="remove_row" class="">- Remove Last Row</button>
+            </div>
             <!-- <label><input type="checkbox" name="cloth_buffer" /> Cloth Buffer</label> -->
         </div>
 
@@ -254,16 +254,6 @@
         <div class="section">
             <h3>LOWER</h3>
             <div class="color-container">
-                <div class="color-block" style="display:none">
-                    <label>
-                        <input type="radio" name="lower_type" value="all_lower" id="all_lower" />
-                        All Lower
-                    </label>
-
-                    <select id="lower_one" class="color-select lower_selection" disabled>
-                        <option value="">Select Color</option>
-                    </select>
-                </div>
 
                 <div class="color-block">
                     <label>
@@ -302,8 +292,8 @@
                         <th># pcs</th>
                         <th>Height</th>
                         <th>Length</th>
-                        <th>2-Ply</th>
-                        <th>1/4"</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -312,10 +302,10 @@
             </table>
 
             <br>
-
-            <button type="button" id="add_lower_row">Add Next Lower Row</button>
-            <button type="button" id="remove_lower_row">Remove Last Lower Row</button>
-
+            <div class="row-buttons">
+                <button type="button" id="add_lower_row">+ Add Next Row</button>
+                <button type="button" id="remove_lower_row">- Remove Last Row</button>
+            </div>
 
         </div>
 
@@ -347,8 +337,8 @@
             <td><input type="text" class="small height"></td>
             <td><input type="text" class="small length"></td>
 
-            <td><label><input type="checkbox" class="ply" value="2ply">2-ply</label></td>
-            <td><label><input type="checkbox" class="thick" value="quarter">1/4"</label></td>
+            <td><label><input type="radio" class="ply" value="2ply">2-ply</label></td>
+            <td><label><input type="radio" class="thick" value="quarter">1/4"</label></td>
 
         </tr>
     </template>
@@ -361,19 +351,9 @@
             <td><input type="text" class="small height"></td>
             <td><input type="text" class="small length"></td>
 
-            <td>
-                <label>
-                    <input type="checkbox" class="ply" value="2ply">
-                    2-ply
-                </label>
-            </td>
+            <td><label><input type="radio" class="ply" value="2ply">2-ply</label></td>
+            <td><label><input type="radio" class="thick" value="quarter">1/4"</label></td>
 
-            <td>
-                <label>
-                    <input type="checkbox" class="thick" value="quarter">
-                    1/4"
-                </label>
-            </td>
 
         </tr>
     </template>
@@ -422,7 +402,7 @@
         clone.querySelector(".height").name = `u${rowCount}_height`;
         clone.querySelector(".length").name = `u${rowCount}_length`;
         clone.querySelector(".ply").name = `u${rowCount}_ply`;
-        clone.querySelector(".thick").name = `u${rowCount}_thick`;
+        clone.querySelector(".thick").name = `u${rowCount}_ply`;
 
         tbody.appendChild(clone);
     };
@@ -463,7 +443,7 @@
         clone.querySelector(".height").name = `l${lowerRowCount}_height`;
         clone.querySelector(".length").name = `l${lowerRowCount}_length`;
         clone.querySelector(".ply").name = `l${lowerRowCount}_ply`;
-        clone.querySelector(".thick").name = `l${lowerRowCount}_thick`;
+        clone.querySelector(".thick").name = `l${lowerRowCount}_ply`;
 
         lowerBody.appendChild(clone);
     };
