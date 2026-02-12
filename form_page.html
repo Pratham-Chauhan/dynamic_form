@@ -1,0 +1,485 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Form</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .sheet {
+            width: 1000px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border: 1px solid #aaa;
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+        }
+
+        h3 {
+            margin: 0 50px 7px 0;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            min-width: 140px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            padding: 5px;
+            border: 1px solid #666;
+            width: 200px;
+        }
+
+        input.underlined-input {
+            border: none;
+            /* Removes the default box */
+            border-bottom: 2px solid #000;
+            /* Adds the underline */
+            outline: none;
+            /* Removes the default blue glow on click */
+        }
+
+        input.underlined-input:focus {
+            border-bottom-color: #007bff;
+        }
+
+        input.small {
+            width: 80px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            background: #e8e8e8;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 8px 0;
+            align-items: center;
+        }
+
+        .submit {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+        }
+
+        .color-select {
+            width: 100px;
+            padding: 6px 6px 6px 6px;
+            border: 2px solid #444;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #fff;
+            position: relative;
+        }
+
+
+        .color-select:disabled {
+            background-color: #eee;
+            color: #777;
+            border-color: #bbb;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="sheet">
+        <h2>Brush Manufacturing Order</h2>
+
+        <!-- CUSTOMER INFO -->
+        <div class="section">
+            <div class="row">
+                <label>Customer:</label>
+                <input type="text" name="customer" class="underlined-input" />
+            </div>
+
+            <div class="row">
+                <label>Sales Order #:</label>
+                <input type="text" name="sales_order" class="underlined-input" />
+            </div>
+
+            <div class="row">
+                <label>Date:</label>
+                <input type="date" name="date" />
+            </div>
+        </div>
+
+        <!-- MATERIAL TYPE -->
+        <div class="section">
+            <div class="row">
+                <label>Brush Name:</label>
+                <input type="text" name="brush_name" class="underlined-input" />
+            </div>
+
+            <div class="checkbox-group">
+                <h3>Material</h3>
+                <label><input type="radio" name="material" value="foam" /> DYNAMO
+                    Foam</label>
+                <label><input type="radio" name="material" value="wave" /> DYNAMO
+                    WAVE</label>
+            </div>
+
+            <div class="row">
+                <label>Brush Quantity:</label>
+                <input type="number" name="brush_qty" />
+            </div>
+        </div>
+
+        <!-- KEY COLORS -->
+        <div class="section">
+            <div class="checkbox-group">
+                <h3>Key</h3>
+                <label><input type="checkbox" name="key_black" /> Black</label>
+                <label><input type="checkbox" name="key_gray" /> Gray</label>
+                <label><input type="checkbox" name="key_cg" /> CG</label>
+            </div>
+        </div>
+
+        <!-- UPPER SECTION -->
+        <div class="section">
+            <h3>Color</h3>
+            <div class="color-container">
+                <div class="color-block">
+                    <label>
+                        <input type="radio" name="upper_type" value="all" id="mode_all" />
+                        All
+                    </label>
+
+                    <select id="global_color" class="color-select upper_selection">
+                        <option value="">Select Color</option>
+                    </select>
+                </div>
+
+                <div class="color-block">
+                    <label>
+                        <input type="radio" name="upper_type" value="all_upper" id="all_upper" />
+                        All Upper
+                    </label>
+
+                    <select id="upper_one" class="color-select upper_selection" disabled>
+                        <option value="">Select Color</option>
+                    </select>
+                </div>
+
+                <div class="color-block">
+                    <label>
+                        <input type="radio" name="upper_type" value="half_upper" id="half_upper" />
+                        Half Upper
+                    </label>
+
+                    Color 1:
+                    <select id="upper_two_a" class="color-select upper_selection" disabled>
+                        <option value="">Select</option>
+                    </select>
+
+                    Color 2:
+                    <select id="upper_two_b" class="color-select upper_selection" disabled>
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>UPPER</th>
+                        <th># pcs</th>
+                        <th>Height</th>
+                        <th>Length</th>
+                        <th>2-Ply</th>
+                        <th>1/4"</th>
+                    </tr>
+                </thead>
+
+                <tbody id="upper_rows">
+                </tbody>
+            </table>
+
+            <br>
+
+            <button type="button" id="add_row">Add Next Row</button>
+            <button type="button" id="remove_row">Remove Last Row</button>
+
+            <!-- <label><input type="checkbox" name="cloth_buffer" /> Cloth Buffer</label> -->
+        </div>
+
+        <!-- LOWER SECTION -->
+        <div class="section">
+            <h3>LOWER</h3>
+            <div class="color-container">
+                <div class="color-block" style="display:none">
+                    <label>
+                        <input type="radio" name="lower_type" value="all_lower" id="all_lower" />
+                        All Lower
+                    </label>
+
+                    <select id="lower_one" class="color-select lower_selection" disabled>
+                        <option value="">Select Color</option>
+                    </select>
+                </div>
+
+                <div class="color-block">
+                    <label>
+                        <input type="radio" name="lower_type" value="all_lower" id="all_lower" />
+                        All Lower
+                    </label>
+
+                    <select id="lower_one" class="color-select lower_selection" disabled>
+                        <option value="">Select Color</option>
+                    </select>
+                </div>
+
+                <div class="color-block">
+                    <label>
+                        <input type="radio" name="lower_type" value="half_lower" id="half_lower" />
+                        Half Lower
+                    </label>
+
+                    Color 1:
+                    <select id="lower_two_a" class="color-select lower_selection" disabled>
+                        <option value="">Select</option>
+                    </select>
+
+                    Color 2:
+                    <select id="lower_two_b" class="color-select lower_selection" disabled>
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>LOWER</th>
+                        <th># pcs</th>
+                        <th>Height</th>
+                        <th>Length</th>
+                        <th>2-Ply</th>
+                        <th>1/4"</th>
+                    </tr>
+                </thead>
+
+                <tbody id="lower_rows">
+                </tbody>
+            </table>
+
+            <br>
+
+            <button type="button" id="add_lower_row">Add Next Lower Row</button>
+            <button type="button" id="remove_lower_row">Remove Last Lower Row</button>
+
+
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <label>Core Cover</label>
+                <input type="text" name="core_cover1" class="small"/>
+                <input type="text" name="core_cover2" class="small"/>
+
+            </div>
+
+            <div class="row">
+                <label>Spacer Rod</label>
+                <input type="text" name="spacer_rod1" class="small"/>
+                <input type="text" name="spacer_rod2" class="small"/>
+            </div>
+        </div>
+        <div class="submit">
+            <button type="submit">Submit Form</button>
+        </div>
+    </div>
+
+    <template id="row_template">
+        <tr class="upper-row">
+
+            <td class="row-number">1</td>
+
+            <td><input type="number" class="small pcs"></td>
+            <td><input type="text" class="small height"></td>
+            <td><input type="text" class="small length"></td>
+
+            <td><label><input type="checkbox" class="ply" value="2ply">2-ply</label></td>
+            <td><label><input type="checkbox" class="thick" value="quarter">1/4"</label></td>
+
+        </tr>
+    </template>
+    <template id="lower_row_template">
+        <tr class="lower-row">
+
+            <td class="row-number">1</td>
+
+            <td><input type="number" class="small pcs"></td>
+            <td><input type="text" class="small height"></td>
+            <td><input type="text" class="small length"></td>
+
+            <td>
+                <label>
+                    <input type="checkbox" class="ply" value="2ply">
+                    2-ply
+                </label>
+            </td>
+
+            <td>
+                <label>
+                    <input type="checkbox" class="thick" value="quarter">
+                    1/4"
+                </label>
+            </td>
+
+        </tr>
+    </template>
+
+</body>
+
+<script>
+    // 1. Define the colors you want to add
+    const colors = ["Black", "Blue", "Red", "Green", "Yellow", "Orange"];
+
+    // 2. Target all <select> elements
+    const selectElements = document.querySelectorAll("select");
+
+    // 3. Loop through each select and append the options
+    selectElements.forEach((select) => {
+        colors.forEach((color) => {
+            const option = document.createElement("option");
+            option.value = color;
+            option.textContent = color;
+            select.appendChild(option);
+        });
+    });
+</script>
+<script src="./color_rules.js"></script>
+<script>
+    const tbody = document.getElementById("upper_rows");
+    const template = document.getElementById("row_template");
+
+    const addBtn = document.getElementById("add_row");
+    const removeBtn = document.getElementById("remove_row");
+
+    let rowCount = 0;
+
+    /* ADD ROW */
+    addBtn.onclick = () => {
+
+        rowCount++;
+
+        const clone = template.content.cloneNode(true);
+
+        // set row number
+        clone.querySelector(".row-number").textContent = rowCount;
+
+        // assign names
+        clone.querySelector(".pcs").name = `u${rowCount}_pcs`;
+        clone.querySelector(".height").name = `u${rowCount}_height`;
+        clone.querySelector(".length").name = `u${rowCount}_length`;
+        clone.querySelector(".ply").name = `u${rowCount}_ply`;
+        clone.querySelector(".thick").name = `u${rowCount}_thick`;
+
+        tbody.appendChild(clone);
+    };
+
+    /* REMOVE LAST ROW */
+    removeBtn.onclick = () => {
+        if (rowCount === 0) return;
+
+        tbody.removeChild(tbody.lastElementChild);
+        rowCount--;
+    };
+
+    /* start with one row automatically */
+    addBtn.onclick();
+
+</script>
+<script>
+    /* ---------------- LOWER ROWS ---------------- */
+
+    const lowerBody = document.getElementById("lower_rows");
+    const lowerTemplate = document.getElementById("lower_row_template");
+
+    const addLowerBtn = document.getElementById("add_lower_row");
+    const removeLowerBtn = document.getElementById("remove_lower_row");
+
+    let lowerRowCount = 0;
+
+    /* ADD LOWER ROW */
+    addLowerBtn.onclick = () => {
+
+        lowerRowCount++;
+
+        const clone = lowerTemplate.content.cloneNode(true);
+
+        clone.querySelector(".row-number").textContent = lowerRowCount;
+
+        clone.querySelector(".pcs").name = `l${lowerRowCount}_pcs`;
+        clone.querySelector(".height").name = `l${lowerRowCount}_height`;
+        clone.querySelector(".length").name = `l${lowerRowCount}_length`;
+        clone.querySelector(".ply").name = `l${lowerRowCount}_ply`;
+        clone.querySelector(".thick").name = `l${lowerRowCount}_thick`;
+
+        lowerBody.appendChild(clone);
+    };
+
+    /* REMOVE LAST LOWER ROW */
+    removeLowerBtn.onclick = () => {
+
+        if (lowerRowCount === 0) return;
+
+        lowerBody.removeChild(lowerBody.lastElementChild);
+        lowerRowCount--;
+    };
+
+    /* start with one lower row */
+    addLowerBtn.onclick();
+
+</script>
+
+</html>
